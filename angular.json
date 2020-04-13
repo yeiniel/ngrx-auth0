@@ -2,5 +2,49 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "@yeiniel/ngrx-auth0": {
+      "projectType": "library",
+      "root": "projects/yeiniel/ngrx-auth0",
+      "sourceRoot": "projects/yeiniel/ngrx-auth0/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/yeiniel/ngrx-auth0/tsconfig.lib.json",
+            "project": "projects/yeiniel/ngrx-auth0/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/yeiniel/ngrx-auth0/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/yeiniel/ngrx-auth0/src/test.ts",
+            "tsConfig": "projects/yeiniel/ngrx-auth0/tsconfig.spec.json",
+            "karmaConfig": "projects/yeiniel/ngrx-auth0/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/yeiniel/ngrx-auth0/tsconfig.lib.json",
+              "projects/yeiniel/ngrx-auth0/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": "1ca3d576-ac1e-4f2a-91ef-7bc81e2a260b"
+  },
+  "defaultProject": "@yeiniel/ngrx-auth0"
 }

@@ -14,7 +14,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@yeiniel/ngrx-auth0": [
+        "dist/yeiniel/ngrx-auth0/yeiniel-ngrx-auth0",
+        "dist/yeiniel/ngrx-auth0"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
