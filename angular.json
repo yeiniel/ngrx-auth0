@@ -42,9 +42,130 @@
           }
         }
       }
+    },
+    "@yeiniel/ngrx-auth0-example": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/yeiniel/ngrx-auth0-example",
+      "sourceRoot": "projects/yeiniel/ngrx-auth0-example/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/yeiniel/ngrx-auth0-example",
+            "index": "projects/yeiniel/ngrx-auth0-example/src/index.html",
+            "main": "projects/yeiniel/ngrx-auth0-example/src/main.ts",
+            "polyfills": "projects/yeiniel/ngrx-auth0-example/src/polyfills.ts",
+            "tsConfig": "projects/yeiniel/ngrx-auth0-example/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/yeiniel/ngrx-auth0-example/src/favicon.ico",
+              "projects/yeiniel/ngrx-auth0-example/src/assets"
+            ],
+            "styles": [
+              "projects/yeiniel/ngrx-auth0-example/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/yeiniel/ngrx-auth0-example/src/environments/environment.ts",
+                  "with": "projects/yeiniel/ngrx-auth0-example/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "@yeiniel/ngrx-auth0-example:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "@yeiniel/ngrx-auth0-example:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "@yeiniel/ngrx-auth0-example:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/yeiniel/ngrx-auth0-example/src/test.ts",
+            "polyfills": "projects/yeiniel/ngrx-auth0-example/src/polyfills.ts",
+            "tsConfig": "projects/yeiniel/ngrx-auth0-example/tsconfig.spec.json",
+            "karmaConfig": "projects/yeiniel/ngrx-auth0-example/karma.conf.js",
+            "assets": [
+              "projects/yeiniel/ngrx-auth0-example/src/favicon.ico",
+              "projects/yeiniel/ngrx-auth0-example/src/assets"
+            ],
+            "styles": [
+              "projects/yeiniel/ngrx-auth0-example/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+                "projects/yeiniel/ngrx-auth0-example/tsconfig.app.json",
+                "projects/yeiniel/ngrx-auth0-example/tsconfig.spec.json",
+                "projects/yeiniel/ngrx-auth0-example/e2e/tsconfig.json"
+              ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+          "e2e": {
+            "builder": "@angular-devkit/build-angular:protractor",
+            "options": {
+              "protractorConfig": "projects/yeiniel/ngrx-auth0-example/e2e/protractor.conf.js",
+              "devServerTarget": "@yeiniel/ngrx-auth0-example:serve"
+            },
+            "configurations": {
+              "production": {
+                "devServerTarget": "@yeiniel/ngrx-auth0-example:serve:production"
+              }
+            }
+          }
+      }
     }},
   "cli": {
     "analytics": "1ca3d576-ac1e-4f2a-91ef-7bc81e2a260b"
   },
-  "defaultProject": "@yeiniel/ngrx-auth0"
+  "defaultProject": "@yeiniel/ngrx-auth0-example"
 }
