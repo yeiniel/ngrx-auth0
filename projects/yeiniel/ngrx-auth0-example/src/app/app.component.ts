@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { loginAction } from '@yeiniel/ngrx-auth0';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = '@yeiniel/ngrx-auth0-example';
+
+  constructor(protected store: Store) {}
+
+  onLogin() {
+    this.store.dispatch(loginAction());
+  }
 }
