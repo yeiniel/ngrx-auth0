@@ -1,3 +1,5 @@
-<button (click)="onLogin()">login</button>
-<br />
+<ng-container [ngSwitch]="isLoggedIn$ | async">
+  <button id="loginBtn" *ngSwitchCase="false" (click)="onLoginClick()">login</button>
+  <button id="logoutBtn" *ngSwitchCase="true" (click)="onLogoutClick()">logout</button>
+</ng-container>
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loginAction } from '@yeiniel/ngrx-auth0';
+import { loginAction, logoutAction, isLoggedInSelector } from '@yeiniel/ngrx-auth0';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,17 @@ import { loginAction } from '@yeiniel/ngrx-auth0';
 })
 export class AppComponent {
 
-  constructor(protected store: Store) {}
+  isLoggedIn$: Observable<boolean>;
 
-  onLogin() {
+  constructor(protected store: Store) {
+    this.isLoggedIn$ = this.store.select(isLoggedInSelector);
+  }
+
+  onLoginClick() {
     this.store.dispatch(loginAction());
+  }
+
+  onLogoutClick() {
+    this.store.dispatch(logoutAction());
   }
 }
