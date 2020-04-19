@@ -1,31 +1,46 @@
-import { TestBed, async } from '@angular/core/testing';
+import {TestBed, async, ComponentFixture} from '@angular/core/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { loginAction } from '@yeiniel/ngrx-auth0';
+
 import { AppComponent } from './app.component';
+import {By} from "@angular/platform-browser";
 
 describe('AppComponent', () => {
+  let store: MockStore;
+  let fixture: ComponentFixture<AppComponent>;
+  let app: AppComponent;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
+      providers: [
+        provideMockStore({ initialState: {} })
+      ]
     }).compileComponents();
+
+    store = TestBed.inject(MockStore);
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
   }));
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title '@yeiniel/ngrx-auth0-example'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('@yeiniel/ngrx-auth0-example');
-  });
+  it('dispatch loginAction() when login button clicked', async(() => {
+    const dispatchSpy = spyOn(store, 'dispatch');
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('@yeiniel/ngrx-auth0-example app is running!');
-  });
+    const buttonDe = fixture.debugElement.query(By.css('button'));
+
+    buttonDe.nativeElement.click();
+
+    fixture.whenStable().then(() => {
+      expect(dispatchSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        loginAction()
+      );
+    });
+  }));
 });
