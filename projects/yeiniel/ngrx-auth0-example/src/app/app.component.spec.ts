@@ -1,6 +1,6 @@
-import {TestBed, async, ComponentFixture} from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { loginAction } from '@yeiniel/ngrx-auth0';
+import { loginAction, logoutAction } from '@yeiniel/ngrx-auth0';
 
 import { AppComponent } from './app.component';
 import {By} from "@angular/platform-browser";
@@ -16,13 +16,21 @@ describe('AppComponent', () => {
         AppComponent
       ],
       providers: [
-        provideMockStore({ initialState: {} })
+        provideMockStore({
+          initialState: {
+            '@yeiniel/ngrx-auth0': {
+              isLoggedIn: false
+            }
+          }
+        })
       ]
     }).compileComponents();
 
     store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.componentInstance;
+
+    fixture.detectChanges();
   }));
 
   it('should create the app', () => {
@@ -32,7 +40,7 @@ describe('AppComponent', () => {
   it('dispatch loginAction() when login button clicked', async(() => {
     const dispatchSpy = spyOn(store, 'dispatch');
 
-    const buttonDe = fixture.debugElement.query(By.css('button'));
+    const buttonDe = fixture.debugElement.query(By.css('button#loginBtn'));
 
     buttonDe.nativeElement.click();
 
@@ -40,6 +48,29 @@ describe('AppComponent', () => {
       expect(dispatchSpy).toHaveBeenCalledTimes(1);
       expect(dispatchSpy).toHaveBeenCalledWith(
         loginAction()
+      );
+    });
+  }));
+
+  it('dispatch logoutAction() when logout button clicked', async(() => {
+    const dispatchSpy = spyOn(store, 'dispatch');
+
+    store.setState({
+      '@yeiniel/ngrx-auth0': {
+        isLoggedIn: true
+      }
+    });
+
+    fixture.detectChanges();
+
+    const buttonDe = fixture.debugElement.query(By.css('button#logoutBtn'));
+
+    buttonDe.nativeElement.click();
+
+    fixture.whenStable().then(() => {
+      expect(dispatchSpy).toHaveBeenCalledTimes(1);
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        logoutAction()
       );
     });
   }));
