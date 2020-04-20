@@ -1,6 +1,13 @@
 {
   "name": "@yeiniel/ngrx-auth0",
   "version": "0.1.0",
+  "homepage": "https://github.com/yeiniel/ngrx-auth0#readme",
+  "license": "MIT",
+  "author": {
+    "email": "yeiniel@gmail.com",
+    "name": "Yeiniel Suarez Sosa"
+  },
+  "repository": "github:yeiniel/ngrx-auth0",
   "peerDependencies": {
     "@angular/common": "^9.1.1",
     "@angular/core": "^9.1.1",
