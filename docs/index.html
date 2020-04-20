@@ -1,0 +1,175 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ngrx-auth0 documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	      <link rel="stylesheet" href="./styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">ngrx-auth0 documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="ngrxauth0">NgrxAuth0</h1>
+<p>NgrxAuth0 is an <a href="https://angular.io">Angular</a> module that provides 
+authentication using <a href="https://auth0.com">Auth0</a> and implements its interface in 
+the form of an NgRx store feature.</p>
+<h2 id="installation">Installation</h2>
+<p>The module can be installed using the following command:</p>
+<div><pre class="line-numbers"><code class="language-bash">npm install &#64;yeiniel/ngrx-auth0 --save</code></pre></div><h2 id="usage">Usage</h2>
+<p>Once the module has been installed you can add it as a dependency of the app 
+module as follows:</p>
+<div><pre class="line-numbers"><code class="language-js">import { BrowserModule } from &#39;&#64;angular/platform-browser&#39;;
+import { NgModule } from &#39;&#64;angular/core&#39;;
+import { StoreModule } from &#39;&#64;ngrx/store&#39;;
+import { NgrxAuth0Module } from &#39;&#64;yeiniel/ngrx-auth0&#39;;
+import { EffectsModule } from &#39;&#64;ngrx/effects&#39;;
+
+
+&#64;NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot(),
+    NgrxAuth0Module.forRoot({
+      domain: &#39;xxxx.auth0.com&#39;,
+      client_id: &#39;yyyyyyyy&#39;,
+      redirect_uri: `${window.location.origin}`,
+      audience: &#39;zzzzzzzzzzz&#39;
+    })
+  ],
+  providers: [],
+  bootstrap: [...]
+})
+export class AppModule { }</code></pre></div><p>Once the application has been configured to use the module there are tree 
+artifacts that can be used to interact with it:</p>
+<ul>
+<li>the isLoggedIn selector used to select the login state from the store</li>
+<li>the login action used to initiate the login flow and redirecting to 
+<a href="https://auth0.com">Auth0</a>.</li>
+<li>the logout action</li>
+</ul>
+<p>The following code is an example of a component that implement the UI used to
+interact with the module features:</p>
+<div><pre class="line-numbers"><code class="language-js">import { Component } from &#39;&#64;angular/core&#39;;
+import { Store } from &#39;&#64;ngrx/store&#39;;
+import { loginAction, logoutAction, isLoggedInSelector } from &#39;&#64;yeiniel/ngrx-auth0&#39;;
+import { Observable } from &#39;rxjs&#39;;
+
+&#64;Component({
+  selector: &#39;app-root&#39;,
+  template: `
+    &lt;ng-container [ngSwitch]=&quot;isLoggedIn$ | async&quot;&gt;
+      &lt;button id=&quot;loginBtn&quot; *ngSwitchCase=&quot;false&quot; (click)=&quot;onLoginClick()&quot;&gt;login&lt;/button&gt;
+      &lt;button id=&quot;logoutBtn&quot; *ngSwitchCase=&quot;true&quot; (click)=&quot;onLogoutClick()&quot;&gt;logout&lt;/button&gt;
+    &lt;/ng-container&gt;
+  `
+})
+export class AppComponent {
+
+  isLoggedIn$: Observable&lt;boolean&gt;;
+
+  constructor(protected store: Store) {
+    this.isLoggedIn$ = this.store.select(isLoggedInSelector);
+  }
+
+  onLoginClick() {
+    this.store.dispatch(loginAction());
+  }
+
+  onLogoutClick() {
+    this.store.dispatch(logoutAction());
+  }
+}</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
