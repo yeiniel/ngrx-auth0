@@ -3,6 +3,5 @@
  */
 
 export * from './lib/ngrx-auth0.module';
-export * from './lib/login.action';
-export * from './lib/logout.action';
+export { loginAction, logoutAction } from './lib/actions';
 export * from './lib/is-logged-in.selector';

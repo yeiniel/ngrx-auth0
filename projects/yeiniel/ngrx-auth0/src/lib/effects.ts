@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType, OnInitEffects, ROOT_EFFECTS_INIT } from '@ngrx/effects';
+import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { Action, Store } from '@ngrx/store';
 import { EMPTY } from "rxjs";
 
-import { loginAction } from './login.action';
-import { logoutAction } from './logout.action';
-import { loginCompleteAction } from "./login-complete.action";
+import {
+  initAction,
+  loginAction,
+  loginCompleteAction,
+  logoutAction
+} from './actions';
 import { AuthService } from "./auth.service";
-import { initAction } from './init.action';
 
 @Injectable()
 export class Effects implements OnInitEffects {

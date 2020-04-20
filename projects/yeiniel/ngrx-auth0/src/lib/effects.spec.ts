@@ -7,9 +7,7 @@ import { Action } from '@ngrx/store';
 
 import { Effects } from './effects';
 import { AuthService } from './auth.service';
-import { initAction } from "./init.action";
-import { loginAction } from "./login.action";
-import { logoutAction } from './logout.action';
+import { initAction, loginAction, logoutAction } from "./actions";
 
 @Injectable()
 class AuthServiceMock {

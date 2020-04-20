@@ -2,7 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 
 import { initialState } from './initial-state';
 import { State } from './state';
-import { loginCompleteAction } from './login-complete.action';
+import { loginCompleteAction } from './actions';
 
 /** NgRx Store reducer for the module feature */
 const actionReducer = createReducer(

@@ -1,6 +1,6 @@
-import { createAction } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 
-import { featureKey } from './feature-key';
+import { featureKey } from '../feature-key';
 
 /** Login
  *
@@ -10,6 +10,7 @@ import { featureKey } from './feature-key';
  * It does not produce any change on the stored state but it trigger side
  * effects.
  */
-export const loginAction = createAction(
-  `[${featureKey}] Login`
+export const loginCompleteAction = createAction(
+  `[${featureKey}] Login Complete`,
+  props<{ isLoggedIn: boolean }>()
 );

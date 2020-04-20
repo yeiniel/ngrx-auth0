@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 import { initialState } from './initial-state';
 import { reducer } from './reducer';
-import { loginCompleteAction } from './login-complete.action';
+import { loginCompleteAction } from './actions';
 
 describe('@yeiniel/ngrx-auth0/reducer', () => {
   describe('undefined action', () => {
