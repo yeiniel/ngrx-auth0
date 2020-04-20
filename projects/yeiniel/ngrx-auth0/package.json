@@ -4,6 +4,7 @@
   "peerDependencies": {
     "@angular/common": "^9.1.1",
     "@angular/core": "^9.1.1",
+    "@auth0/auth0-spa-js": "^1.6.5",
     "@ngrx/store": "^9.1.0",
     "tslib": "^1.10.0"
   }
