@@ -16,7 +16,7 @@ export class AuthService {
 
   public isAuthenticated$: Observable<boolean>;
 
-  constructor(@Inject(AuthServiceOptions) protected options: Auth0ClientOptions) {
+  constructor(@Inject(AuthServiceOptions) protected options: any) {
 
     // setup the auth0 client
     this.auth0Client$ = (from(
