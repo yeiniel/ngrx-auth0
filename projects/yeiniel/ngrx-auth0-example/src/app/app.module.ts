@@ -21,7 +21,12 @@ import { AppComponent } from './app.component';
     EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
 
-    NgrxAuth0Module
+    NgrxAuth0Module.forRoot({
+      domain: 'xxxxx.auth0.com',
+      client_id: 'yyyyyyyyyy',
+      redirect_uri: `${window.location.origin}`,
+      audience: 'zzzzzzzzzz'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
