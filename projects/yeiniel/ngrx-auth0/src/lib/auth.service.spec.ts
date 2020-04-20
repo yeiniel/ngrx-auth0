@@ -8,7 +8,10 @@ import { AuthServiceOptions } from './auth-service-options';
 
 @Injectable()
 class TestableAuthService extends AuthService {
-  public auth0Client$: Observable<Auth0Client>;
+  /** Return the service Auth0Client$ observable */
+  public getAuth0Client$(): Observable<Auth0Client> {
+    return this.auth0Client$;
+  }
 }
 
 describe('@yeiniel/ngrx-auth0/AuthService', () => {
@@ -32,7 +35,7 @@ describe('@yeiniel/ngrx-auth0/AuthService', () => {
   });
 
   it('auth0Client$.options is AuthServiceOptions', (doneFn) => {
-    service.auth0Client$.subscribe(auth0Client => {
+    service.getAuth0Client$().subscribe(auth0Client => {
 
       expect((auth0Client as any).options).toBe(options);
 
@@ -41,7 +44,7 @@ describe('@yeiniel/ngrx-auth0/AuthService', () => {
   });
 
   it('isAuthenticated$ calls auth0Client$.isAuthenticated()', (doneFn) => {
-    service.auth0Client$.subscribe(auth0Client => {
+    service.getAuth0Client$().subscribe(auth0Client => {
 
       const isAuthenticatedSpy =
         spyOn(auth0Client, 'isAuthenticated')
@@ -50,13 +53,16 @@ describe('@yeiniel/ngrx-auth0/AuthService', () => {
       service.isAuthenticated$.subscribe(() => {
         expect(isAuthenticatedSpy).toHaveBeenCalledTimes(1);
 
+        // reset spy
+        isAuthenticatedSpy.and.callThrough();
+
         doneFn();
       });
     })
   });
 
   it('login calls auth0Client$.loginWithRedirect()', (doneFn) => {
-    service.auth0Client$.subscribe(auth0Client => {
+    service.getAuth0Client$().subscribe(auth0Client => {
 
       const loginWithRedirectSpy =
         spyOn(auth0Client, 'loginWithRedirect')
@@ -66,12 +72,15 @@ describe('@yeiniel/ngrx-auth0/AuthService', () => {
 
       expect(loginWithRedirectSpy).toHaveBeenCalledTimes(1);
 
+      // reset spy
+      loginWithRedirectSpy.and.callThrough();
+
       doneFn();
     })
   });
 
   it('logout calls auth0Client$.logout()', (doneFn) => {
-    service.auth0Client$.subscribe(auth0Client => {
+    service.getAuth0Client$().subscribe(auth0Client => {
 
       const logoutSpy =
         spyOn(auth0Client, 'logout')
@@ -80,6 +89,9 @@ describe('@yeiniel/ngrx-auth0/AuthService', () => {
       service.logout();
 
       expect(logoutSpy).toHaveBeenCalledTimes(1);
+
+      // reset spy
+      logoutSpy.and.callThrough();
 
       doneFn();
     })
