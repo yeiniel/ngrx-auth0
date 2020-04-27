@@ -4,4 +4,4 @@
 
 export * from './lib/ngrx-auth0.module';
 export { loginAction, logoutAction } from './lib/actions';
-export * from './lib/is-logged-in.selector';
+export { isLoggedInSelector, profileSelector } from './lib/selectors';

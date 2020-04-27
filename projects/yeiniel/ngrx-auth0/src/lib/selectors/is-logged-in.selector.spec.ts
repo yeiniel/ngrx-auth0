@@ -1,6 +1,6 @@
-import { featureKey } from './feature-key';
+import { featureKey } from '../feature-key';
 import { isLoggedInSelector } from './is-logged-in.selector';
-import { initialState } from './initial-state';
+import { initialState } from '../initial-state';
 
 describe('@yeiniel/ngrx-auth0/isLoggedInSelector', () => {
 

@@ -1,6 +1,6 @@
-import { featureKey } from './feature-key';
+import { featureKey } from '../feature-key';
 import { selector } from './selector';
-import { initialState } from './initial-state';
+import { initialState } from '../initial-state';
 
 describe('@yeiniel/ngrx-auth0/selector', () => {
 
