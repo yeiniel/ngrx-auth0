@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { from, Observable, throwError } from 'rxjs';
 import { catchError, concatMap, shareReplay, tap } from 'rxjs/operators';
-import createAuth0Client from '@auth0/auth0-spa-js';
+import createAuth0Client, { Auth0ClientOptions } from '@auth0/auth0-spa-js';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 
 import { AuthServiceOptions } from './auth-service-options';
@@ -16,7 +16,7 @@ export class AuthService {
 
   public isAuthenticated$: Observable<boolean>;
 
-  constructor(@Inject(AuthServiceOptions) protected options: any) {
+  constructor(@Inject(AuthServiceOptions) protected options: Auth0ClientOptions) {
 
     // setup the auth0 client
     this.auth0Client$ = (from(
@@ -34,9 +34,6 @@ export class AuthService {
     this.isAuthenticated$ = this.auth0Client$.pipe(
       concatMap(client => from(client.isAuthenticated()))
     );
-
-    // // check local authentication status by subscribing to isAuthenticated$
-    // this.isAuthenticated$.subscribe();
 
     // handle redirect from Auth0 login
     this.handleAuthCallback();

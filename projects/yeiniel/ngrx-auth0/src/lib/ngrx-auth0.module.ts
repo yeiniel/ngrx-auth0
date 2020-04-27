@@ -1,6 +1,7 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { Auth0ClientOptions } from '@auth0/auth0-spa-js';
 
 import { featureKey } from './feature-key';
 import { reducer } from './reducer';
@@ -27,9 +28,9 @@ export class NgrxAuth0Module {
    *
    * Suitable to be used as root module import.
    *
-   * @param options
+   * @param options Auth0 client options
    */
-  static forRoot(options: any): ModuleWithProviders {
+  static forRoot(options: Auth0ClientOptions): ModuleWithProviders {
     return {
       ngModule: NgrxAuth0Module,
       providers: [

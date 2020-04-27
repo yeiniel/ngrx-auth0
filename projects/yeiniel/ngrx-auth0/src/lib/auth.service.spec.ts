@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 import { Injectable } from '@angular/core';
+import { Auth0ClientOptions } from "@auth0/auth0-spa-js";
 
 import { AuthService } from './auth.service';
 import { AuthServiceOptions } from './auth-service-options';
@@ -27,7 +28,7 @@ describe('@yeiniel/ngrx-auth0/AuthService', () => {
     });
 
     service = TestBed.inject(AuthService) as TestableAuthService;
-    options = TestBed.inject(AuthServiceOptions) as Auth0ClientOptions;
+    options = TestBed.inject(AuthServiceOptions);
   });
 
   it('should be created', () => {
