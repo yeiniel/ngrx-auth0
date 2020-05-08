@@ -59,7 +59,7 @@ interact with the module features:
 ```js
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loginAction, logoutAction, isLoggedInSelector } from '@yeiniel/ngrx-auth0';
+import { loginAction, logoutAction, isLoggedInSelector, profileSelector } from '@yeiniel/ngrx-auth0';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -69,14 +69,19 @@ import { Observable } from 'rxjs';
       <button id="loginBtn" *ngSwitchCase="false" (click)="onLoginClick()">login</button>
       <button id="logoutBtn" *ngSwitchCase="true" (click)="onLogoutClick()">logout</button>
     </ng-container>
+
+    {{ profile$ | async }}
   `
 })
 export class AppComponent {
 
   isLoggedIn$: Observable<boolean>;
 
+  profile$: Observable<any>;
+
   constructor(protected store: Store) {
     this.isLoggedIn$ = this.store.select(isLoggedInSelector);
+    this.profile$ = this.store.select(profileSelector);
   }
 
   onLoginClick() {
