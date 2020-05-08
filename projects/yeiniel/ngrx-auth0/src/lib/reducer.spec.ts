@@ -26,5 +26,18 @@ describe('@yeiniel/ngrx-auth0/reducer', () => {
 
       expect(state.isLoggedIn).toEqual(false);
     });
+
+    it('should set profile to value', () => {
+      const profile = {};
+      let action = loginCompleteAction({ isLoggedIn: true, profile });
+      let state = reducer(initialState, action);
+
+      expect(state.profile).toEqual(profile);
+
+      action = loginCompleteAction({ isLoggedIn: false, profile: undefined });
+      state = reducer(initialState, action);
+
+      expect(state.profile).toEqual(undefined);
+    });
   });
 });
