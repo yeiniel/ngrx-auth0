@@ -16,6 +16,8 @@ export class AuthService {
 
   public isAuthenticated$: Observable<boolean>;
 
+  public profile$: Observable<any>;
+
   constructor(@Inject(AuthServiceOptions) protected options: Auth0ClientOptions) {
 
     // setup the auth0 client
@@ -33,6 +35,11 @@ export class AuthService {
     // setup the isAuthenticated$ observable
     this.isAuthenticated$ = this.auth0Client$.pipe(
       concatMap(client => from(client.isAuthenticated()))
+    );
+
+    // setup profile$ observable
+    this.profile$ = this.auth0Client$.pipe(
+      concatMap((client: Auth0Client) => from(client.getUser()))
     );
 
     // handle redirect from Auth0 login
