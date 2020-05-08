@@ -8,7 +8,9 @@ import { loginCompleteAction } from './actions';
 const actionReducer = createReducer(
   initialState,
   on(loginCompleteAction,
-    (state, { isLoggedIn }) => ({ ...state, isLoggedIn }))
+    (state, { isLoggedIn, profile }) =>
+      ({ ...state, isLoggedIn, profile })
+  )
 );
 
 export function reducer(state: State | undefined, action: Action) {
