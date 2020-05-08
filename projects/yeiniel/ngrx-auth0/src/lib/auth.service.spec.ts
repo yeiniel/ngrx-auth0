@@ -62,6 +62,27 @@ describe('@yeiniel/ngrx-auth0/AuthService', () => {
     })
   });
 
+  it('profile$ calls auth0Client$.getUser()', (doneFn) => {
+    const profile = {};
+
+    service.getAuth0Client$().subscribe(auth0Client => {
+
+      const getUserSpy =
+        spyOn(auth0Client, 'getUser')
+          .and.callFake(() => Promise.resolve(profile));
+
+      service.profile$.subscribe(observedProfile => {
+        expect(getUserSpy).toHaveBeenCalledTimes(1);
+        expect(observedProfile).toBe(profile);
+
+        // reset spy
+        getUserSpy.and.callThrough();
+
+        doneFn();
+      });
+    })
+  });
+
   it('login calls auth0Client$.loginWithRedirect()', (doneFn) => {
     service.getAuth0Client$().subscribe(auth0Client => {
 
