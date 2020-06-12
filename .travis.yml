@@ -1,5 +1,4 @@
-dist: trusty
-sudo: false
+dist: xenial
 
 language: node_js
 
@@ -7,11 +6,7 @@ node_js:
   - node
 
 addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+  chrome: stable
 
 script:
   - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
