@@ -1,10 +1,17 @@
+dist: trusty
+sudo: false
+
 language: node_js
 
 node_js:
   - node
 
 addons:
-  chrome: stable
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 
 script:
   - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
