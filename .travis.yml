@@ -9,4 +9,5 @@ addons:
   chrome: stable
 
 script:
+  - npm run build -- @yeiniel/ngrx-auth0
   - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
