@@ -1,4 +1,5 @@
 # NgrxAuth0
+[![Build Status](https://travis-ci.org/yeiniel/ngrx-auth0.svg?branch=master)](https://travis-ci.org/yeiniel/ngrx-auth0)
 
 NgrxAuth0 is an [Angular](https://angular.io) module that provides 
 authentication using [Auth0](https://auth0.com) and implements its interface in 
